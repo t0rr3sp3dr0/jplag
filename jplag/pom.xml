@@ -86,7 +86,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>jplag.JPlag</mainClass>
+                            <mainClass>jplag.Main</mainClass>
                             <packageName>jplag</packageName>
                         </manifest>
                     </archive>
@@ -103,7 +103,7 @@
 
                     <archive>
                         <manifest>
-                            <mainClass>jplag.JPlag</mainClass>
+                            <mainClass>jplag.Main</mainClass>
                             <packageName>jplag</packageName>
                         </manifest>
                     </archive>
@@ -140,6 +140,14 @@
                         <scope>runtime</scope>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
             </plugin>
 
         </plugins>
@@ -188,19 +196,11 @@
         </dependency>
         <dependency>
             <groupId>edu.kit.ipd.jplag</groupId>
-            <artifactId>java-1.1exp</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>edu.kit.ipd.jplag</groupId>
             <artifactId>utils</artifactId>
         </dependency>
         <dependency>
             <groupId>edu.kit.ipd.jplag</groupId>
-            <artifactId>text</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>edu.kit.ipd.jplag</groupId>
-            <artifactId>java-1.5</artifactId>
+            <artifactId>cpp</artifactId>
         </dependency>
         <dependency>
             <groupId>edu.kit.ipd.jplag</groupId>
@@ -209,22 +209,6 @@
         <dependency>
             <groupId>edu.kit.ipd.jplag</groupId>
             <artifactId>python-3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>edu.kit.ipd.jplag</groupId>
-            <artifactId>csharp-1.2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>edu.kit.ipd.jplag</groupId>
-            <artifactId>cpp</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>edu.kit.ipd.jplag</groupId>
-            <artifactId>scheme</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>edu.kit.ipd.jplag</groupId>
-            <artifactId>chars</artifactId>
         </dependency>
     </dependencies>
 </project>
