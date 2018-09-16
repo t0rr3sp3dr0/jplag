@@ -1,6 +1,6 @@
 package jplag;
 
-public class Match {
+public class Match implements Comparable<Match> {
     public final int startA;
     public final int startB;
     public final int length;
@@ -14,8 +14,16 @@ public class Match {
     public final boolean overlap(Match match) {
         //noinspection unchecked
         for (Pair<Integer, Integer> p : new Pair[]{Pair.of(this.startA, match.startA), Pair.of(this.startB, match.startB)})
-            if ((p.fst < p.snd && (p.snd - p.fst) < this.length) || ((p.fst - p.snd) < match.length))
+            if (p.fst < p.snd) {
+                if ((p.snd - p.fst) < this.length)
+                    return true;
+            } else if ((p.fst - p.snd) < match.length)
                 return true;
         return false;
+    }
+
+    @Override
+    public int compareTo(Match o) {
+        return Integer.compare(this.startA, o.startA);
     }
 }

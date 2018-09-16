@@ -4,12 +4,6 @@ import java.util.Collections;
 
 public class GreedyStringTiling {
     public static Comparison compare(Submission a, Submission b, int minimumMatchLength) {
-        if ((b.struct.table == null && a.struct.table != null) || (a.struct.size() > b.struct.size())) {
-            Submission s = a;
-            a = b;
-            b = s;
-        }
-
         Structure structA = a.struct;
         Structure structB = b.struct;
 
@@ -35,11 +29,11 @@ public class GreedyStringTiling {
             initHashTable(structB, minimumMatchLength, true);
 
         int maxMatch;
+        int[] elemsB;
         do {
             maxMatch = minimumMatchLength;
             Matches matches = new Matches();
 
-            int[] elemsB;
             for (int x = 0; x <= lengthA - maxMatch; ++x) {
                 if (tokensA[x].marked || tokensA[x].hash == -1 || (elemsB = structB.table.get(tokensA[x].hash)) == null)
                     continue;
@@ -68,17 +62,17 @@ public class GreedyStringTiling {
                 }
             }
 
-            for (Match match : matches) {
-                comparison.add(match);
+            for (int i = matches.size() - 1; i >= 0; --i) {
+                comparison.add(matches.get(i));
 
-                int x = match.startA;
-                int y = match.startB;
-                for (int i = 0; i < match.length; ++i)
+                int x = matches.get(i).startA;
+                int y = matches.get(i).startB;
+                for (int j = 0; j < matches.get(i).length; ++j)
                     tokensA[x++].marked = tokensB[y++].marked = true;
             }
         } while (maxMatch != minimumMatchLength);
 
-        Collections.reverse(comparison);
+        Collections.sort(comparison);
         return comparison;
     }
 
@@ -102,7 +96,7 @@ public class GreedyStringTiling {
             if (s.tokens[i].marked)
                 hashedLength = 0;
             else
-                hashedLength++;
+                ++hashedLength;
         }
 
         int factor = hashLength != 1 ? 2 << (hashLength - 2) : 1;
@@ -118,7 +112,7 @@ public class GreedyStringTiling {
             if (s.tokens[i + hashLength].marked)
                 hashedLength = 0;
             else
-                hashedLength++;
+                ++hashedLength;
         }
         s.hash_length = hashLength;
     }
