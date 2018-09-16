@@ -49,7 +49,7 @@ public class JPlag implements ProgramI, Runnable {
                 Token startB = b[match.startB];
                 Token endB = b[match.startB + match.length - 1];
 
-                System.out.printf("\t\t\t{\n\t\t\t\t\"a\": [%d, %d],\n\t\t\t\t\"b\": [%d, %d],\n\t\t\t},\n", startA.getLine(), endA.getLine(), startB.getLine(), endB.getLine());
+                System.out.printf("\t\t\t{\n\t\t\t\t\"a\": {\n\t\t\t\t\t\"from\": {\n\t\t\t\t\t\t\"line\": %d,\n\t\t\t\t\t\t\"column\": %d,\n\t\t\t\t\t},\n\t\t\t\t\t\"to\": {\n\t\t\t\t\t\t\"line\": %d,\n\t\t\t\t\t\t\"column\": %d,\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\"b\": {\n\t\t\t\t\t\"from\": {\n\t\t\t\t\t\t\"line\": %d,\n\t\t\t\t\t\t\"column\": %d,\n\t\t\t\t\t},\n\t\t\t\t\t\"to\": {\n\t\t\t\t\t\t\"line\": %d,\n\t\t\t\t\t\t\"column\": %d,\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n", startA.getLine(), startA.getColumn(), endA.getLine(), endA.getColumn(), startB.getLine(), startB.getColumn(), endB.getLine(), endB.getColumn());
             }
             System.out.print("\t\t],\n\t},\n");
         }
